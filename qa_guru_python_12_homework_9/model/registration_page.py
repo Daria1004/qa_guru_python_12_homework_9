@@ -1,4 +1,4 @@
-import os
+from qa_guru_python_12_homework_9.resources.resource import resource
 
 from selene import browser, have, be, command
 
@@ -37,7 +37,7 @@ class RegistrationPage:
         browser.all('#hobbiesWrapper label').element_by(have.exact_text(value)).element('..').perform(command.js.scroll_into_view).click()
 
     def fill_picture(self, file):
-        browser.element('#uploadPicture').send_keys(os.path.abspath(f'resources/{file}'))
+        browser.element('#uploadPicture').send_keys(resource.path(file))
 
     def fill_current_address(self, value):
         browser.element('#currentAddress').set_value(value)
