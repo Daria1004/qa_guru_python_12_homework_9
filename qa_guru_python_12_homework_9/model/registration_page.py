@@ -8,7 +8,6 @@ class RegistrationPage:
     def open(self):
         browser.open('/automation-practice-form')
 
-
     def fill_first_name(self, value):
         browser.element('#firstName').should(be.blank).set_value(value)
 
@@ -34,7 +33,8 @@ class RegistrationPage:
         browser.element('#subjectsInput').set_value(value).press_enter()
 
     def fill_hobbies(self, value):
-        browser.all('#hobbiesWrapper label').element_by(have.exact_text(value)).element('..').perform(command.js.scroll_into_view).click()
+        browser.all('#hobbiesWrapper label').element_by(have.exact_text(value)).element('..').perform(
+            command.js.scroll_into_view).click()
 
     def fill_picture(self, file):
         browser.element('#uploadPicture').send_keys(resource.path(file))
@@ -51,7 +51,8 @@ class RegistrationPage:
     def submit(self):
         browser.element('#submit').perform(command.js.scroll_into_view).click()
 
-    def should_registered_user_with(self, first_name, last_name, email, gender, mobile, date_of_birth, subjects, hobbies, picture, current_address, state, city):
+    def should_registered_user_with(self, first_name, last_name, email, gender, mobile, date_of_birth, subjects,
+                                    hobbies, picture, current_address, state, city):
         browser.element('.table').all('td').even.should(have.exact_texts(
             f'{first_name} {last_name}',
             email,
