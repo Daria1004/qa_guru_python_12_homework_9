@@ -52,13 +52,15 @@ class RegistrationPage:
         browser.element('#submit').perform(command.js.scroll_into_view).click()
 
     def should_registered_user_with(self, first_name, last_name, email, gender, mobile, date_of_birth, subjects, hobbies, picture, current_address, state, city):
-        browser.element('table>tbody>tr:nth-child(1)>td:nth-child(2)').should(have.text(f'{first_name} {last_name}'))
-        browser.element('table>tbody>tr:nth-child(2)>td:nth-child(2)').should(have.text(email))
-        browser.element('table>tbody>tr:nth-child(3)>td:nth-child(2)').should(have.text(gender))
-        browser.element('table>tbody>tr:nth-child(4)>td:nth-child(2)').should(have.text(mobile))
-        browser.element('table>tbody>tr:nth-child(5)>td:nth-child(2)').should(have.text(date_of_birth))
-        browser.element('table>tbody>tr:nth-child(6)>td:nth-child(2)').should(have.text(subjects))
-        browser.element('table>tbody>tr:nth-child(7)>td:nth-child(2)').should(have.text(hobbies))
-        browser.element('table>tbody>tr:nth-child(8)>td:nth-child(2)').should(have.text(picture))
-        browser.element('table>tbody>tr:nth-child(9)>td:nth-child(2)').should(have.text(current_address))
-        browser.element('table>tbody>tr:nth-child(10)>td:nth-child(2)').should(have.text(f'{state} {city}'))
+        browser.element('.table').all('td').even.should(have.exact_texts(
+            f'{first_name} {last_name}',
+            email,
+            gender,
+            mobile,
+            date_of_birth,
+            subjects,
+            hobbies,
+            picture,
+            current_address,
+            f'{state} {city}'
+        ))
