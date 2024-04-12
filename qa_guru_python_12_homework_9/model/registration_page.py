@@ -2,12 +2,44 @@ import os
 
 from selene import browser, have, be, command
 
+from qa_guru_python_12_homework_9.model.user import User
+
 
 class RegistrationPage:
 
     def open(self):
         browser.open('/automation-practice-form')
         browser.element('.text-center').should(have.text('Practice Form'))
+
+    def register(self, user: User):
+        self.fill_first_name(user.first_name)
+        self.fill_last_name(user.last_name)
+        self.fill_email(user.email)
+        self.fill_gender(user.gender.value)
+        self.fill_mobile(user.mobile)
+        self.fill_date_of_birth(user.year, user.month, user.day)
+        self.fill_subjects(user.subjects.value)
+        self.fill_hobbies(user.hobbies.value)
+        self.fill_picture(user.picture)
+        self.fill_current_address(user.current_address)
+        self.fill_state(user.state)
+        self.fill_city(user.city)
+
+    def should_have_registered(self, user: User):
+        self.should_registered_user_with(
+            user.first_name,
+            user.last_name,
+            user.email,
+            user.gender.value,
+            user.mobile,
+            f'{user.day} {user.month},{user.year}',
+            user.subjects.value,
+            user.hobbies.value,
+            user.picture,
+            user.current_address,
+            user.state,
+            user.city
+        )
 
     def fill_first_name(self, value):
         browser.element('#firstName').should(be.blank).set_value(value)
