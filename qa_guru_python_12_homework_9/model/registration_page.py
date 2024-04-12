@@ -9,13 +9,13 @@ class RegistrationPage:
         browser.open('/automation-practice-form')
 
     def fill_first_name(self, value):
-        browser.element('#firstName').should(be.blank).set_value(value)
+        browser.element('#firstName').set_value(value)
 
     def fill_last_name(self, value):
-        browser.element('#lastName').should(be.blank).set_value(value)
+        browser.element('#lastName').set_value(value)
 
     def fill_email(self, value):
-        browser.element('#userEmail').should(be.blank).set_value(value)
+        browser.element('#userEmail').set_value(value)
 
     def fill_gender(self, value):
         browser.all('[name="gender"]').element_by(have.value(value)).element('..').click()
